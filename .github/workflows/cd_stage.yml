@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: SSH into server
         run: |
-          echo ${{secrets.SSH_PRIVATE_KEY}} &> ~/ssh_key
+          echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
+          echo "${{secrets.KNOWN_HOSTS}}" &> ~/.ssh/known_hosts
           ssh -i ~/ssh_key ubuntu@13.49.246.146
           cd deploy-wee-25/ && git pull 
           pnpm install 
