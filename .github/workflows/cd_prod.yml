@@ -1,12 +1,12 @@
 ---
-    name: Deploy to stageing
+    name: Deploy to Proding
     on:
       push:
         branches: [prod]
     
     jobs:
       redeploy_everything:
-        name: Deploying everything to staging cluster
+        name: Deploying everything to Production cluster
         runs-on: ubuntu-latest
         steps:
           - name: SSH into server
