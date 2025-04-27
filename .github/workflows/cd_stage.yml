@@ -15,7 +15,7 @@ jobs:
           mkdir -p /home/runner/.ssh
           touch /home/runner/.ssh/known_hosts
           echo "${{secrets.KNOWN_HOSTS}}" &> ~/.ssh/known_hosts
-          chmod 600 /home/runner/ssh_key
+          chmod 700 /home/runner/ssh_key
           cat ~/ssh_key
           ssh -i ~/ssh_key ubuntu@13.49.246.146
           cd deploy-wee-25/ && git pull 
