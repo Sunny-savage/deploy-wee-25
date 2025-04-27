@@ -18,6 +18,6 @@ jobs:
           chmod 700 /home/runner/ssh_key
           cat ~/ssh_key
 
-          ssh -i ~/ssh_key ubuntu@16.171.112.166 -t  "  source ~/.nvm/nvm.sh; cd deploy-wee-25/ &&  git pull && ls && pnpm -v && pnpm install &&   pnpm run build && pm2 restart http-server-dev &&
-          pm2 restart ws-server-dev &&
-          pm2 restart nextjs-server-dev "
+          ssh -i ~/ssh_key ubuntu@16.171.112.166 -t  "  source ~/.nvm/nvm.sh; cd deploy-wee-25/ &&  git pull && ls && pnpm -v && pnpm install &&   pnpm run build && pm2 restart http-sever-dev &&
+          pm2 restart ws-sever-dev &&
+          pm2 restart nextjs-sever-dev "
