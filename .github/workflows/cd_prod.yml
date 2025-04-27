@@ -1,0 +1,24 @@
+---
+    name: Deploy to stageing
+    on:
+      push:
+        branches: [prod]
+    
+    jobs:
+      redeploy_everything:
+        name: Deploying everything to staging cluster
+        runs-on: ubuntu-latest
+        steps:
+          - name: SSH into server
+            run: |
+              echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
+              mkdir -p /home/runner/.ssh
+              touch /home/runner/.ssh/known_hosts
+              echo "${{secrets.KNOWN_HOSTS}}" &> ~/.ssh/known_hosts
+              chmod 700 /home/runner/ssh_key
+              cat ~/ssh_key
+    
+              ssh -i ~/ssh_key ubuntu@51.20.129.118 -t  "  source ~/.nvm/nvm.sh; cd deploy-wee-25/ &&  git pull && ls && pnpm -v && pnpm install &&   pnpm run build && pm2 restart http-server-prod &&
+              pm2 restart ws-server-prod &&
+              pm2 restart nextjs-server-prod "
+    
